@@ -60,7 +60,7 @@ def Data_Handler(Topic, jsonData):
    elif(Topic == Enviroment_topic):
        ## Topic = "ITM/Workbench1/Enviroment/hum" or "ITM/Workbench1/Enviroment/temp" or "ITM/Workbench1/Enviroment/lumi"
        ## humidity for example:
-       ## messege = {"n":"hum","v":" ","t":" "}
+       ## messege = {"n":"hum","v":" ","t":" ","d":" "}
        Data_Handler_Enviroment(jsonData)
        ## messege = {"v":" "}
    elif(Topic == Product_topic):
