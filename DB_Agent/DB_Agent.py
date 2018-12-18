@@ -39,18 +39,18 @@ def Data_Handler_Enviroment(Data):
     Date = JsonDictionary['d']
     dbObj = DatabaseManager1()
 
-    dbObj.add_del_update_db_record("insert into Enviroment(SensorName,value,Time,Date,SessionID) VALUES (?,?,?,?,?)",
-    [Name, Value, Time, Date ,dbObj.add_del_update_db_record("select SessionID from Worksession WHERE "
-    "SessionID =(SELECT MAX(SessionID) FROM Worksession)")])
-    ## or SELECT SessionID FROM Worksession ORDER BY SessionID DESC LIMIT 1;
+    dbObj.add_del_update_db_record("insert into Enviroment(Sensor_Name,Sensor_value,Time,Date,SessionID) VALUES (?,?,?,?,?)",
+    [Name, Value, Time, Date,
+    (dbObj.add_del_update_db_record("select SessionID FROM Worksession ORDER BY SessionID DESC LIMIT 1"))])
     del dbObj
 
 def Data_Handler_Product(Data):
     JsonDictionary = json.loads(Data)
     ProductCount = JsonDictionary["v"]
     dbObj = DatabaseManager1()
-    dbObj.add_del_update_db_record("insert into Product(ProductsessionID,ProductCount) VALUES (?,?)",
-    [dbObj.add_del_update_db_record("SELECT SessionID FROM Worksession ORDER BY SessionID DESC LIMIT 1"),ProductCount])
+    dbObj.add_del_update_db_record("insert into Product(Product_sessionID,Product_Count) VALUES (?,?)",
+    [(dbObj.add_del_update_db_record("SELECT SessionID FROM Worksession ORDER BY SessionID DESC LIMIT 1"))
+    ,ProductCount])
     del dbObj
 
 def Data_Handler(Topic, jsonData):
