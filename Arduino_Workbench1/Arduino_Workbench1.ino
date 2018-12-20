@@ -298,7 +298,7 @@ void reconnect() {
   Serial.print(topic) ;
   Serial.println("\"") ;
 
-  mqtt_client.publish(String(topic).c_str(), String(millis())) ;
+//  mqtt_client.publish(String(topic).c_str(), String(millis())) ;
   //  mqtt_client.subscribe(String(topic + "/ACTION").c_str()) ;  /* If you want to subscribe to topics, you have to do it here. */
 
 }
@@ -317,22 +317,26 @@ void sendValues() {
 
     if (identity.equals("3d002187a8")) 
     {
-      mqtt_client.publish(String(topic + "Worker1").c_str(), String("{\"RFID1 \":\"") + String(identity)+String("\",")+String("\"Time\":\"") + String(timestamp) + String("\",")+String("\"Date \":\"") + String(timeDate)  + String("\"}")) ;
-      mqtt_client.publish(String(topic + "Worker1/"+"Enviroment/LUMI" ).c_str(), String("{\"Illumination \":\"") + String(lum).c_str() + String("\",")+String("\"Time\":\"") + String(timestamp) + String("\",")+String("\"Date \":\"") + String(timeDate) + String("\"}") );
-      mqtt_client.publish(String(topic + "Worker1/"+"Enviroment/TEMP").c_str(), String("{\"Temperature *C \":\"") + String(tmp).c_str() + String("\",")+String("\"Time\":\"") + String(timestamp) + String("\",")+String("\"Date \":\"") + String(timeDate)  + String("\"}")) ;
-      mqtt_client.publish(String(topic + "Worker1/"+"Enviroment/HUMI").c_str(), String("{\"Humidity \":\"") + String(hmdt).c_str() + String("\",")+String("\"Time\":\"") + String(timestamp) + String("\",")+String("\"Date \":\"") + String(timeDate) + String("\"}")) ;
-      mqtt_client.publish(String(topic + "Worker1/Product").c_str(), String("{\"Readyproducts\":\"") + String(buttonPushCounter1) +String("\",")+String("\"Time\":\"") + String(timestamp) + String("\",")+String("\"Date \":\"") + String(timeDate)  + String("\"}")) ;
-
+      
+      mqtt_client.publish(String(topic + "Worksession").c_str(), String("{\"n\":\"") +String("RFID \",")+ String("\"v\":\"") + String(identity)  + String("\"}")) ;
+      mqtt_client.publish(String(topic + "product").c_str(), String("{\"v\":\"") + String(buttonPushCounter1) + String("\"}")) ;
+      mqtt_client.publish(String(topic + "Enviroment/lum" ).c_str(), String("{\"n\":\"") +String("lum\",")+ String("\"v\":\"")+ String(lum).c_str() + String("\",")+String("\"t\":\"") + String(timestamp) + String("\",")+String("\"d\":\"") + String(timeDate) + String("\"}") );
+      mqtt_client.publish(String(topic + "Enviroment/temp").c_str(), String("{\"n\":\"") +String("temp\",")+ String("\"v\":\"")+ String(tmp).c_str() + String("\",")+String("\"t\":\"") + String(timestamp) + String("\",")+String("\"d\":\"") + String(timeDate)  + String("\"}")) ;
+      mqtt_client.publish(String(topic + "Enviroment/hum").c_str(), String("{\"n\":\"") +String("hum\",")+ String("\"v\":\"") + String(hmdt).c_str() + String("\",")+String("\"t\":\"") + String(timestamp) + String("\",")+String("\"d\":\"") + String(timeDate) + String("\"}")) ;
+      mqtt_client.publish(String("Android").c_str(), String("{\"RFID\":\"")  + String(identity)  + String("\",")+ String("\"lum \":\"")+ String(lum).c_str() + String("\",")+ String("\",")+ String("\"temp\":\"")+ String(tmp).c_str() +String("\"hum\":\"")+ String(hmdt).c_str()+ String("\",")+String("\"Time\":\"") + String(timestamp) + String("\",")+String("\"Date \":\"") + String(timeDate) +String("\"}")) ;
 
     }
+    
     if (identity.equals("8400071725"))
     {
-      mqtt_client.publish(String(topic + "Worker2").c_str(), String("{\"RFID2 \":\"") + String(identity)+String("\",")+String("\"Time\":\"") + String(timestamp) + String("\",")+String("\"Date \":\"") + String(timeDate)  + String("\"}")) ;
-      mqtt_client.publish(String(topic + "Worker2/"+"Enviroment/LUMI" ).c_str(), String("{\"Illumination  \":\"") + String(lum).c_str() + String("\",")+String("\"Time\":\"") + String(timestamp) + String("\",")+String("\"Date \":\"") + String(timeDate) + String("\"}") );
-      mqtt_client.publish(String(topic + "Worker2/"+"Enviroment/TEMP").c_str(), String("{\"Temperature *C \":\"") + String(tmp).c_str() + String("\",")+String("\"Time\":\"") + String(timestamp) + String("\",")+String("\"Date \":\"") + String(timeDate)  + String("\"}")) ;
-      mqtt_client.publish(String(topic + "Worker2/"+"Enviroment/HUMI").c_str(), String("{\"Humidity \":\"") + String(hmdt).c_str() + String("\",")+String("\"Time\":\"") + String(timestamp) + String("\",")+String("\"Date \":\"") + String(timeDate) + String("\"}")) ;
-      mqtt_client.publish(String(topic + "Worker2/Product").c_str(), String("{\"Readyproducts\":\"") + String(buttonPushCounter2) +String("\",")+String("\"Time\":\"") + String(timestamp) + String("\",")+String("\"Date \":\"") + String(timeDate)  + String("\"}")) ;
-     }
+      mqtt_client.publish(String(topic + "Worksession").c_str(), String("{\"n\":\"") +String("RFID \",")+ String("\"v\":\"") + String(identity)  + String("\"}")) ;
+      mqtt_client.publish(String(topic + "product").c_str(), String("{\"v\":\"") + String(buttonPushCounter2) + String("\"}")) ;
+      mqtt_client.publish(String(topic + "Enviroment/lum" ).c_str(), String("{\"n\":\"") +String("lum\",")+ String("\"v\":\"")+ String(lum).c_str() + String("\",")+String("\"t\":\"") + String(timestamp) + String("\",")+String("\"d\":\"") + String(timeDate) + String("\"}") );
+      mqtt_client.publish(String(topic + "Enviroment/temp").c_str(), String("{\"n\":\"") +String("temp\",")+ String("\"v\":\"")+ String(tmp).c_str() + String("\",")+String("\"t\":\"") + String(timestamp) + String("\",")+String("\"d\":\"") + String(timeDate)  + String("\"}")) ;
+      mqtt_client.publish(String(topic + "Enviroment/hum").c_str(), String("{\"n\":\"") +String("hum\",")+ String("\"v\":\"") + String(hmdt).c_str() + String("\",")+String("\"t\":\"") + String(timestamp) + String("\",")+String("\"d\":\"") + String(timeDate) + String("\"}")) ;
+      mqtt_client.publish(String("Android").c_str(), String("{\"RFID\":\"")  + String(identity)  + String("\",")+ String("\"lum \":\"")+ String(lum).c_str() + String("\",")+ String("\",")+ String("\"temp\":\"")+ String(tmp).c_str() +String("\"hum\":\"")+ String(hmdt).c_str()+ String("\",")+String("\"Time\":\"") + String(timestamp) + String("\",")+String("\"Date \":\"") + String(timeDate) +String("\"}")) ;
+    }
+    
    }
 }
 
