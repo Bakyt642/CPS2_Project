@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity"
+    android:background="@color/tan_background">
+
+    <TextView
+
+        android:id="@+id/phrases"
+        style="@style/CategoryStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:textAllCaps="true"
+        android:text="Welcome to ITM factory"
+        android:textColor="@color/category_family"
+        android:layout_marginBottom="40dp"
+
+        />
+    <TextView
+        android:id="@+id/progress1"
+        style="@style/CategoryStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Real time work progress monitoring"
+        android:background="@color/category_phrases"
+        android:textColor="@android:color/white"/>
+    <TextView
+
+        android:layout_width="match_parent"
+        android:layout_height="6dp"
+
+        android:background="@color/tan_background"
+        android:textColor="@android:color/white"/>
+    <TextView
+        android:id="@+id/workbench"
+        style="@style/CategoryStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Workbench A"
+        android:background="@color/category_colors"
+        android:textColor="@android:color/white"/>
+    <TextView
+
+        android:layout_width="match_parent"
+        android:layout_height="6dp"
+
+        android:background="@color/tan_background"
+        android:textColor="@android:color/white"/>
+    <TextView
+        android:id="@+id/workbench2"
+        style="@style/CategoryStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Workbench B"
+        android:background="@color/category_colors"
+        android:textColor="@android:color/white"/>
+
+
+
+</LinearLayout>

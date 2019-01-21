@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/tan_background"
+    tools:context=".MainActivity">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="On Workbench B: "
+            style="@style/CategoryStyle"
+            android:layout_weight="1"
+            android:textColor="@color/category_family"/>
+        <TextView
+            android:id="@+id/identityb"
+            style="@style/CategoryStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="left"
+            android:textColor="@color/category_family"
+            android:text="i" />
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Work Enviroment"
+            android:background="@color/tan_background"
+            android:textAlignment="center"
+            style="@style/Envi"
+            android:layout_weight="2"
+            android:textColor="@color/category_family"/>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/Temperatureb"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Temperature: "
+            style="@style/Envi"
+            android:layout_weight="2"
+            />
+        <TextView
+            android:id="@+id/tempReceivedb"
+            style="@style/Envi"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="right"
+            android:text="v" />
+        <TextView
+
+            style="@style/Envi"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="C" />
+        <ImageView
+            style="@style/Envi"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:src="@drawable/thermometer" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/Humidityb"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Humidity: "
+            style="@style/Envi"
+            android:layout_weight="2" />
+        <TextView
+            android:id="@+id/humReceivedb"
+            style="@style/Envi"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="right"
+            android:text="v" />
+        <TextView
+
+            style="@style/Envi"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="%" />
+        <ImageView
+            style="@style/Envi"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:src="@drawable/humidity" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Light: "
+            style="@style/Envi"
+            android:layout_weight="2" />
+        <TextView
+            android:id="@+id/lumReceivedb"
+            style="@style/Envi"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="right"
+            android:text="v" />
+        <TextView
+
+            style="@style/Envi"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Lux" />
+        <ImageView
+            style="@style/Envi"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:src="@drawable/illumination" />
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/turnoffimage"
+        style="@style/Envi"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="@color/tan_background"
+        android:scaleType="fitXY"
+        android:src="@drawable/ic_bulb_off"
+        />
+
+
+    <ToggleButton
+        android:id="@+id/toggle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:textOn="ON"
+        android:textOff="OFF"
+        android:onClick="onToggleClickedb"/>
+
+
+</LinearLayout>

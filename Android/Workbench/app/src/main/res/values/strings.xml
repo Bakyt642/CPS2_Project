@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Workbench</string>
+    <!-- Category name for phrases [CHAR LIMIT=20] -->
+    <string name="category_phrases">Welcome to ITM Factory workbench</string>
+    <string name="title_activity_monitoring">monitoring</string>
+    <string name="title_activity_visualizing">Visualizing</string>
+    <string name="title_activity_visual">visual</string>
+    <string name="desc">Image</string>
+</resources>

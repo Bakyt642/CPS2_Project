@@ -52,13 +52,13 @@ const char* mqtt_password = "0P7X_9cvhzzV";
 
 /* Change these values to set the current initial time */
 const byte seconds = 00;
-const byte minutes = 04;
+const byte minutes = 14;
 const byte hours = 10;
 
 /* Change these values to set the current initial date */
-const byte day = 13;
-const byte month = 12;
-const byte year = 18;
+const byte day = 8;
+const byte month = 1;
+const byte year = 19;
 
 /* Some variables to handle measurements. */
 int tmp ;
@@ -91,7 +91,8 @@ byte tempbyte = 0;
 
 /*initializing variables related to Button*/
 const int buttonPin = 6;     // the number of the pushbutton pin
-const int ledPin =  7;      // the number of the LED pin
+const int ledPin =  7; // the number of the LED pin
+const int light = 7;
 
 int buttonPushCounter1 = 0;   // counter for the number of button presses for first WORKER1
 int buttonPushCounter2 = 0;   // counter for the number of button presses for first WORKER2
@@ -299,7 +300,7 @@ void reconnect() {
   Serial.println("\"") ;
 
 //  mqtt_client.publish(String(topic).c_str(), String(millis())) ;
-  //  mqtt_client.subscribe(String(topic + "/ACTION").c_str()) ;  /* If you want to subscribe to topics, you have to do it here. */
+    mqtt_client.subscribe(String("ACTION").c_str()) ;  /* If you want to subscribe to topics, you have to do it here. */
 
 }
 
@@ -323,7 +324,7 @@ void sendValues() {
       mqtt_client.publish(String(topic + "Enviroment/lum" ).c_str(), String("{\"n\":\"") +String("lum\",")+ String("\"v\":\"")+ String(lum).c_str() + String("\",")+String("\"t\":\"") + String(timestamp) + String("\",")+String("\"d\":\"") + String(timeDate) + String("\"}") );
       mqtt_client.publish(String(topic + "Enviroment/temp").c_str(), String("{\"n\":\"") +String("temp\",")+ String("\"v\":\"")+ String(tmp).c_str() + String("\",")+String("\"t\":\"") + String(timestamp) + String("\",")+String("\"d\":\"") + String(timeDate)  + String("\"}")) ;
       mqtt_client.publish(String(topic + "Enviroment/hum").c_str(), String("{\"n\":\"") +String("hum\",")+ String("\"v\":\"") + String(hmdt).c_str() + String("\",")+String("\"t\":\"") + String(timestamp) + String("\",")+String("\"d\":\"") + String(timeDate) + String("\"}")) ;
-      mqtt_client.publish(String("Android").c_str(), String("{\"RFID\":\"")  + String(identity)  + String("\",")+ String("\"lum \":\"")+ String(lum).c_str() + String("\",")+ String("\",")+ String("\"temp\":\"")+ String(tmp).c_str() +String("\"hum\":\"")+ String(hmdt).c_str()+ String("\",")+String("\"Time\":\"") + String(timestamp) + String("\",")+String("\"Date \":\"") + String(timeDate) +String("\"}")) ;
+      mqtt_client.publish(String("Android/Workbench1/Worker").c_str(), String("{\"ID\":\"") +String("Sarmanov\",")  + String("\"lum\":\"")+ String(lum).c_str() + String("\",")+ String("\"temp\":\"")+ String(tmp).c_str()+ String("\",")+ String("\"Products1\":\"")+String(buttonPushCounter1) + String("\",")+String("\"Products2\":\"")+String(buttonPushCounter2)+ String("\",") +String("\"hum\":\"")+ String(hmdt).c_str() +String("\"}")) ;
 
     }
     
@@ -334,7 +335,8 @@ void sendValues() {
       mqtt_client.publish(String(topic + "Enviroment/lum" ).c_str(), String("{\"n\":\"") +String("lum\",")+ String("\"v\":\"")+ String(lum).c_str() + String("\",")+String("\"t\":\"") + String(timestamp) + String("\",")+String("\"d\":\"") + String(timeDate) + String("\"}") );
       mqtt_client.publish(String(topic + "Enviroment/temp").c_str(), String("{\"n\":\"") +String("temp\",")+ String("\"v\":\"")+ String(tmp).c_str() + String("\",")+String("\"t\":\"") + String(timestamp) + String("\",")+String("\"d\":\"") + String(timeDate)  + String("\"}")) ;
       mqtt_client.publish(String(topic + "Enviroment/hum").c_str(), String("{\"n\":\"") +String("hum\",")+ String("\"v\":\"") + String(hmdt).c_str() + String("\",")+String("\"t\":\"") + String(timestamp) + String("\",")+String("\"d\":\"") + String(timeDate) + String("\"}")) ;
-      mqtt_client.publish(String("Android").c_str(), String("{\"RFID\":\"")  + String(identity)  + String("\",")+ String("\"lum \":\"")+ String(lum).c_str() + String("\",")+ String("\",")+ String("\"temp\":\"")+ String(tmp).c_str() +String("\"hum\":\"")+ String(hmdt).c_str()+ String("\",")+String("\"Time\":\"") + String(timestamp) + String("\",")+String("\"Date \":\"") + String(timeDate) +String("\"}")) ;
+      mqtt_client.publish(String("Android/Workbench1/Worker").c_str(), String("{\"ID\":\"") +String("Alex\",")  + String("\"lum\":\"")+ String(lum).c_str() + String("\",")+ String("\"temp\":\"")+ String(tmp).c_str()+ String("\",")+ String("\"Products1\":\"")+String(buttonPushCounter1) + String("\",")+String("\"Products2\":\"")+String(buttonPushCounter2)+ String("\",") +String("\"hum\":\"")+ String(hmdt).c_str() +String("\"}")) ;
+
     }
     
    }
@@ -348,27 +350,26 @@ void sendValues() {
 void callback(String &intopic, String &payload)
 {
  /* Here as an example code for call back if want to subscribe later,need to change as per requirement*/
-//  Serial.println("incoming: " + topic + " - " + payload);
-//
-//  if (payload.equals("ON") ) {
-//    digitalWrite(LED_BUILTIN, HIGH);   // turn the LED on (HIGH is the voltage level)
-//    Serial.println("I recieved ON");
-//    // wait for a second
-//
-//  }
-//  else if (payload.equals("OFF") ) {
-//    digitalWrite(LED_BUILTIN, LOW);    // turn the LED off by making the voltage LOW
-//    Serial.println("I recieved OFF");
-//  }
-//
-//  else
-//  {
-//    mqtt_client.publish(String("/LOG").c_str(), String("NOT EXPECTED VALUE")) ;
-//  }
-//
-//
-//  boolean rc = mqtt_client.subscribe("sensor/2/ACTION", 1);
-//  Serial.println(rc);
+  Serial.println("incoming: ---"  + payload);
+
+  if (payload.equals("ON") ) {
+    digitalWrite(light, HIGH);   // turn the LED on (HIGH is the voltage level)
+    Serial.println("I recieved ON");
+    // wait for a second
+
+  }
+  else if (payload.equals("OFF") ) {
+    digitalWrite(light, LOW);    // turn the LED off by making the voltage LOW
+    Serial.println("I recieved OFF");
+  }
+
+  else
+  {
+    mqtt_client.publish(String("/LOG").c_str(), String("NOT EXPECTED VALUE")) ;
+  }
+
+
+ 
 }
 
 
@@ -388,7 +389,7 @@ void fetchDate()
 {
   char buffer [25] = "";
 
-  sprintf(buffer, "%d:%d:%0d", rtc.getDay(), rtc.getMonth(), rtc.getYear());
+  sprintf(buffer, "%02d:%02d:%02d", rtc.getDay(), rtc.getMonth(), rtc.getYear());
   timeDate = buffer;
 }
 
@@ -419,7 +420,9 @@ void ButtonCount()
     else {
       // if the current state is LOW then the button went from on to off:
       Serial.println("off");
+      delay(100);
       digitalWrite(ledPin, LOW);
+       
     }
     // Delay a little bit to avoid bouncing
     delay(50);
