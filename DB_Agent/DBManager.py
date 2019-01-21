@@ -1,6 +1,6 @@
 import pymysql
 
-class DatabaseManager1():
+class DatabaseManager():
     def __init__(self):
         self.conn = pymysql.connect(host='localhost', port=3306, user='root', passwd='Rado123!@#', db='itm')
         self.cur = self.conn.cursor()
